@@ -1,4 +1,4 @@
-public class Pista extends ElementoBasico{
+public class Pista extends ElementoBasico {
     private boolean fechada;
     private int nroPista;
 
@@ -8,19 +8,19 @@ public class Pista extends ElementoBasico{
         this.nroPista = nroPista;
     }
 
-    public int getNroPista(){
+    public int getNroPista() {
         return nroPista;
     }
 
     @Override
     public void acao(ElementoBasico outro) {
-        if (fechada){
+        if (fechada) {
             fechada = false;
-           // setImage(Tabuleiro.createImageIcon("Pista"+nroPista+".jpg"));
-           setImage(Tabuleiro.createImageIcon("hint.jpg"));
-        }else{
+            // setImage(Tabuleiro.createImageIcon("Pista"+nroPista+".jpg"));
+            setImage(Tabuleiro.createImageIcon("hint.jpg"));
+        } else {
             fechada = true;
             setImage(Tabuleiro.createImageIcon("hintFundo.jpg"));
         }
-    }    
+    }
 }
