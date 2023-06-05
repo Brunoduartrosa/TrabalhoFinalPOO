@@ -42,6 +42,7 @@ public class App extends JFrame implements ActionListener {
         this.setSize(1100, 1100);
         this.setTitle("Jogo Demo");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.pack();
         this.setVisible(true);
         tabuleiro.atualizaVisualizacao();
