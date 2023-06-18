@@ -1,5 +1,4 @@
 
-
 public class Personagem extends ElementoBasico {
     private ElementoBasico anterior;
 
@@ -7,14 +6,14 @@ public class Personagem extends ElementoBasico {
         super(id, iconPath, linInicial, colInicial, tabuleiro);
     }
 
-    public void setAnterior(ElementoBasico anterior){
+    public void setAnterior(ElementoBasico anterior) {
         this.anterior = anterior;
     }
 
     public ElementoBasico getAnterior() {
         return anterior;
     }
-    
+
     public void moveDireita() {
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
@@ -84,5 +83,4 @@ public class Personagem extends ElementoBasico {
         throw new UnsupportedOperationException("Unimplemented method 'acao'");
     }
 
-   
 }

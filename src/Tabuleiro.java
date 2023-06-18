@@ -126,7 +126,7 @@ public class Tabuleiro extends JPanel {
             case ' ':
                 return new Fundo("Fundo", lin, col, this);
             case '-':
-                return new Bomba("Dica", lin, col, this);
+                return new Bomba("Bomba", r.nextInt(20), r.nextInt(20), this);
             case '?':
                 return new Pista("Pista", r.nextInt(15), lin, col, this);
             case '^':
