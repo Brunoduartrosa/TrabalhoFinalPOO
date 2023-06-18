@@ -15,7 +15,7 @@ public class Tabuleiro extends JPanel {
     private static final int MAXCOL = 20;
     private ElementoBasico[][] celulas;
 
-    private Personagem principal;
+//    private Personagem principal;
 
     public Tabuleiro() {
         super();
@@ -135,9 +135,10 @@ public class Tabuleiro extends JPanel {
                 return new TBD("Portal", "portal.png", lin, col, this);
             case '*': {
                 ElementoBasico anterior = new Fundo("Fundo", lin, col, this);
-                principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
-                principal.setAnterior(anterior);
-                return principal;
+//                principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
+//                principal.setAnterior(anterior);
+//                return principal;
+                return anterior;
             }
             default:
                 throw new IllegalArgumentException("Personagem invalido: " + elem);
@@ -153,10 +154,10 @@ public class Tabuleiro extends JPanel {
     // tabuleiro.insereElemento(pista1);
     // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
     // tabuleiro.insereElemento(pista2);
-    // Eca eca = new Eca("Eca2215",2215,4,2,tabuleiro);
-    // tabuleiro.insereElemento(eca);
+    // Bomba bomba = new Bomba("Bomba2215",2215,4,2,tabuleiro);
+    // tabuleiro.insereElemento(bomba);
 
-    public Personagem getPrincipal() {
-        return principal;
-    }
+//    public Personagem getPrincipal() {
+//        return principal;
+//    }
 }
