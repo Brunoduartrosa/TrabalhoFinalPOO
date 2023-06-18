@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class App extends JFrame implements ActionListener {
     private Tabuleiro tabuleiro;
-    //private Personagem personagem;
+    // private Personagem personagem;
 
     public App() {
         super();
@@ -23,8 +23,8 @@ public class App extends JFrame implements ActionListener {
 
         // Insere os personagens no tabuleiro
         tabuleiro.loadLevel(1);
-        //personagem = tabuleiro.getPrincipal();
-        //personagem.setAnterior(personagem.getAnterior());
+        // personagem = tabuleiro.getPrincipal();
+        // personagem.setAnterior(personagem.getAnterior());
         // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
         // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
         // personagem.setAnterior(anterior);
@@ -49,19 +49,19 @@ public class App extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        JButton but = (JButton) arg0.getSource();
-//        if (but.getText().equals("Direita")) {
-//            personagem.moveDireita();
-//        }
-//        if (but.getText().equals("Esquerda")) {
-//            personagem.moveEsquerda();
-//        }
-//        if (but.getText().equals("Acima")) {
-//            personagem.moveCima();
-//        }
-//        if (but.getText().equals("Abaixo")) {
-//            personagem.moveBaixo();
-//        }
+        // JButton but = (JButton) arg0.getSource();
+        // if (but.getText().equals("Direita")) {
+        // personagem.moveDireita();
+        // }
+        // if (but.getText().equals("Esquerda")) {
+        // personagem.moveEsquerda();
+        // }
+        // if (but.getText().equals("Acima")) {
+        // personagem.moveCima();
+        // }
+        // if (but.getText().equals("Abaixo")) {
+        // personagem.moveBaixo();
+        // }
         tabuleiro.atualizaVisualizacao();
     }
 
