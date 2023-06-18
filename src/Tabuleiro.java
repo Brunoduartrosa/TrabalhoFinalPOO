@@ -15,7 +15,7 @@ public class Tabuleiro extends JPanel {
     private static final int MAXCOL = 20;
     private ElementoBasico[][] celulas;
 
-//    private Personagem principal;
+    // private Personagem principal;
 
     public Tabuleiro() {
         super();
@@ -127,17 +127,11 @@ public class Tabuleiro extends JPanel {
                 return new Fundo("Fundo", lin, col, this);
             case '-':
                 return new Bomba("Bomba", r.nextInt(20), r.nextInt(20), this);
-            case '?':
-                return new Pista("Pista", r.nextInt(15), lin, col, this);
-            case '^':
-                return new TBD("Buraco", "hole.jpg", lin, col, this);
-            case '+':
-                return new TBD("Portal", "portal.png", lin, col, this);
             case '*': {
                 ElementoBasico anterior = new Fundo("Fundo", lin, col, this);
-//                principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
-//                principal.setAnterior(anterior);
-//                return principal;
+                // principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
+                // principal.setAnterior(anterior);
+                // return principal;
                 return anterior;
             }
             default:
@@ -157,7 +151,7 @@ public class Tabuleiro extends JPanel {
     // Bomba bomba = new Bomba("Bomba2215",2215,4,2,tabuleiro);
     // tabuleiro.insereElemento(bomba);
 
-//    public Personagem getPrincipal() {
-//        return principal;
-//    }
+    // public Personagem getPrincipal() {
+    // return principal;
+    // }
 }
