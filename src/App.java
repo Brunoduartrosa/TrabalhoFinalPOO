@@ -28,7 +28,6 @@ public class App extends JFrame implements ActionListener {
         // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
         // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
         // personagem.setAnterior(anterior);
-
         // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
         // tabuleiro.insereElemento(pista1);
         // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
@@ -40,7 +39,7 @@ public class App extends JFrame implements ActionListener {
         this.add(painelGeral);
 
         this.setSize(1100, 1100);
-        this.setTitle("Jogo Demo");
+        this.setTitle("Campo Minado");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.pack();

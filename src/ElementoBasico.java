@@ -20,9 +20,10 @@ public abstract class ElementoBasico extends JButton {
         this.tabuleiro = tabuleiro;
 
         this.imagem = Tabuleiro.createImageIcon(iconPath);
-        this.setIcon(resize(this.imagem, 10, 10));
-        this.setBorder(BorderFactory.createBevelBorder(0, Color.BLUE, Color.BLACK));
+        this.setIcon((this.imagem));
+        this.setBorder(BorderFactory.createBevelBorder(0, Color.GRAY, Color.BLACK));
         this.setMargin(new Insets(0, 0, 0, 0));
+        this.addActionListener(e -> System.out.println(this.toString()));
     }
 
     public ElementoBasico(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
@@ -38,8 +39,8 @@ public abstract class ElementoBasico extends JButton {
 
     public void setImage(ImageIcon imagem) {
         this.imagem = imagem;
-        // this.setIcon(imagem);
-        this.setIcon(resize(this.imagem, 10, 10));
+        this.setIcon(imagem);
+        // this.setIcon(resize(this.imagem, 15, 15));
     }
 
     public String getId() {
@@ -88,6 +89,11 @@ public abstract class ElementoBasico extends JButton {
             int destHeight) {
         return new ImageIcon(src.getImage().getScaledInstance(destWidth,
                 destHeight, Image.SCALE_SMOOTH));
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass() + " [id=" + id + ", lin=" + lin + ", col=" + col + "]";
     }
 
 }

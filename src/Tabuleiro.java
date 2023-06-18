@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Tabuleiro extends JPanel {
@@ -29,11 +31,19 @@ public class Tabuleiro extends JPanel {
         }
     }
 
+    private static Map<String, ImageIcon> proxi = new HashMap<>();
+
     public static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = App.class.getResource("imagens/"+path);
-        
+        if (proxi.containsKey(path)) {
+            return proxi.get(path);
+        }
+
+        java.net.URL imgURL = App.class.getResource("imagens/" + path);
         if (imgURL != null) {
-            return new ImageIcon(imgURL);
+            ImageIcon aux = new ImageIcon(imgURL);
+            aux = ElementoBasico.resize(aux, 32, 32);
+            proxi.put(path, aux);
+            return aux;
         } else {
             System.err.println("Couldn't find file: " + path);
             System.exit(0);
@@ -88,60 +98,65 @@ public class Tabuleiro extends JPanel {
             }
         }
     }
-    
+
     public void loadLevel(int nivel) {
         Path path1 = Paths.get(String.format("nivel%d.txt", nivel));
         try (BufferedReader reader = Files.newBufferedReader(path1)) {
             String line = null;
             int lin = 0;
             while ((line = reader.readLine()) != null) {
-   
-                for (int col=0; col<MAXCOL; col++) {
+
+                for (int col = 0; col < MAXCOL; col++) {
                     if (line.charAt(col) != ' ') {
-                    ElementoBasico elem = this.getElem(line.charAt(col), lin, col);
-                    this.insereElemento(elem);
+                        ElementoBasico elem = this.getElem(line.charAt(col), lin, col);
+                        this.insereElemento(elem);
                     }
                 }
                 lin++;
-                
+
             }
-        }
-        catch (IOException x) {
+        } catch (IOException x) {
             System.err.format("Erro de E/S: %s%n", x);
         }
     }
-        
+
     public ElementoBasico getElem(char elem, int lin, int col) {
         Random r = new Random();
         switch (elem) {
-           case ' ': return new Fundo("Fundo",lin,col,this);
-           case '-': return new Eca("Dica",lin,col,this);
-           case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
-           case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
-           case '+': return new TBD("Portal","portal.png",lin,col,this);     
-           case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,col,this);
-                        principal = new Personagem("Mutley","mutley.jpg",lin,col,this);
-                        principal.setAnterior(anterior);
-                        return principal;
-                    }
-           default: throw new IllegalArgumentException("Personagem invalido: "+elem);
+            case ' ':
+                return new Fundo("Fundo", lin, col, this);
+            case '-':
+                return new Eca("Dica", lin, col, this);
+            case '?':
+                return new Pista("Pista", r.nextInt(15), lin, col, this);
+            case '^':
+                return new TBD("Buraco", "hole.jpg", lin, col, this);
+            case '+':
+                return new TBD("Portal", "portal.png", lin, col, this);
+            case '*': {
+                ElementoBasico anterior = new Fundo("Fundo", lin, col, this);
+                principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
+                principal.setAnterior(anterior);
+                return principal;
+            }
+            default:
+                throw new IllegalArgumentException("Personagem invalido: " + elem);
         }
 
     }
-     
-        // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
-        // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
-        // personagem.setAnterior(anterior);
 
-        // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
-        // tabuleiro.insereElemento(pista1);
-        // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
-        // tabuleiro.insereElemento(pista2);
-        // Eca eca = new Eca("Eca2215",2215,4,2,tabuleiro);
-        // tabuleiro.insereElemento(eca);
+    // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
+    // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
+    // personagem.setAnterior(anterior);
+
+    // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
+    // tabuleiro.insereElemento(pista1);
+    // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
+    // tabuleiro.insereElemento(pista2);
+    // Eca eca = new Eca("Eca2215",2215,4,2,tabuleiro);
+    // tabuleiro.insereElemento(eca);
 
     public Personagem getPrincipal() {
         return principal;
     }
 }
-
