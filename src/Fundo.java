@@ -7,6 +7,7 @@ public class Fundo extends ElementoBasico {
 
     @Override
     public void acao(ElementoBasico outro) {
+        // implementar método que abre mostra o número
         throw new UnsupportedOperationException("Unimplemented method 'acao'");
     }
 }

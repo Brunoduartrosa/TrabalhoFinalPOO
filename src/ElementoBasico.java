@@ -23,7 +23,7 @@ public abstract class ElementoBasico extends JButton {
         this.setIcon((this.imagem));
         this.setBorder(BorderFactory.createBevelBorder(0, Color.GRAY, Color.BLACK));
         this.setMargin(new Insets(0, 0, 0, 0));
-        this.addActionListener(e -> System.out.println(this.toString()));
+        this.addActionListener(e -> acao(null));
     }
 
     public ElementoBasico(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
