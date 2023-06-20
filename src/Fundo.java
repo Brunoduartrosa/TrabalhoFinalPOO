@@ -1,13 +1,20 @@
+import javax.swing.ImageIcon;
+
 public class Fundo extends ElementoBasico {
+    private boolean aberto = false;
 
     public Fundo(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
         super(id, "grass.jpg", linInicial, colInicial, tabuleiro);
-        // super(id, "fundo.jpg", linInicial, colInicial, tabuleiro);
     }
+
+    ImageIcon imagemAberto = Tabuleiro
+            .createImageIcon("wall.jpg");
 
     @Override
     public void acao(ElementoBasico outro) {
-        // implementar método que abre mostra o número
-        throw new UnsupportedOperationException("Unimplemented method 'acao'");
+        this.aberto = true;
+        // implementar método que mostra todos os números ao redor
+        this.setIcon(imagemAberto);
+
     }
 }
