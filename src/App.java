@@ -10,30 +10,31 @@ import java.util.Random;
 public class App extends JFrame implements ActionListener {
     private Tabuleiro tabuleiro;
     Random r = new Random();
-    // private Personagem personagem;
 
     public App() {
         super();
         // Define dificuldade
-        Object[] opcoes = { "1 - Fácil", "2 - Médio", "3 - Difícil" };
+        Object[] opcoes = { "Fácil", "Médio", "Difícil" };
 
-        int escolha = JOptionPane.showOptionDialog(null, "Selecione a dificuldade:", "Dificuldade",
+        int escolha = JOptionPane.showOptionDialog(null, "Selecione a dificuldade:", "Seletor",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
         System.out.println(escolha);
         Tabuleiro.setDificuldade(escolha);
 
         // Cria o tabuleiro
-        tabuleiro = new Tabuleiro();
+        tabuleiro = Tabuleiro.getInstance();
 
         JPanel painelGeral = new JPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
         painelGeral.add(tabuleiro);
 
-        for (int i = 0; i < Tabuleiro.getNumbombas(); i++) {
+        for (int i = 0; i <= Tabuleiro.getNumbombas(); i++) {
             tabuleiro.insereElemento(
                     new Bomba("Bomba", r.nextInt(Tabuleiro.getMaxcol()), r.nextInt(Tabuleiro.getMaxlin()), tabuleiro));
         }
+
+        contarBombasVizinhas();
 
         // Exibe a janela
         this.add(painelGeral);
@@ -60,4 +61,25 @@ public class App extends JFrame implements ActionListener {
             }
         });
     }
+
+    private void contarBombasVizinhas() {
+        for (int linha = 0; linha < Tabuleiro.getMaxlin(); linha++) {
+            for (int coluna = 0; coluna < Tabuleiro.getMaxcol(); coluna++) {
+                ElementoBasico elemento = tabuleiro.getElementoNaPosicao(linha, coluna);
+                if (elemento instanceof Fundo) {
+                    Fundo fundo = (Fundo) elemento;
+                    int numeroBombasVizinhas = 0;
+
+                    for (ElementoBasico vizinho : Tabuleiro.getInstance().getVizinhos(linha, coluna)) {
+                        if (vizinho instanceof Bomba) {
+                            numeroBombasVizinhas++;
+                        }
+                    }
+
+                    fundo.setNumeroBombas(numeroBombasVizinhas);
+                }
+            }
+        }
+    }
+
 }

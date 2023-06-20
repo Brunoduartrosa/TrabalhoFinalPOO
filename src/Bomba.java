@@ -3,7 +3,7 @@ import javax.swing.ImageIcon;
 public class Bomba extends ElementoBasico {
 
     public Bomba(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
-        super(id, "minesweeper.jpg", linInicial, colInicial, tabuleiro);
+        super(id, "fechado.jpg", linInicial, colInicial, tabuleiro);
     }
 
     ImageIcon imagem = Tabuleiro

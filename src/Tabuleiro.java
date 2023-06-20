@@ -1,29 +1,36 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Tabuleiro extends JPanel {
+    private static Tabuleiro instance;
     private static int MAXLIN = 20;
     private static int MAXCOL = 20;
     private static int NUMBOMBAS = 100;
     private ElementoBasico[][] celulas;
 
-    // private Personagem principal;
-
-    public Tabuleiro() {
+    private Tabuleiro() {
         super();
-        // Cria o conjunto de células vazia e as insere no layout
+        // Cria o conjunto de células vazias e as insere no layout
         celulas = new ElementoBasico[MAXLIN][MAXCOL];
         this.setLayout(new GridLayout(MAXLIN, MAXCOL));
         for (int i = 0; i < MAXLIN; i++) {
             for (int j = 0; j < MAXCOL; j++) {
-
                 celulas[i][j] = new Fundo("Fundo[" + i + "][" + j + "]", i, j, this);
                 this.add(celulas[i][j]);
             }
         }
+    }
+
+    public static Tabuleiro getInstance() {
+        if (instance == null) {
+            instance = new Tabuleiro();
+        }
+        return instance;
     }
 
     private static Map<String, ImageIcon> proxi = new HashMap<>();
@@ -116,5 +123,25 @@ public class Tabuleiro extends JPanel {
                 this.add(celulas[i][j]);
             }
         }
+    }
+
+    public ArrayList<ElementoBasico> getVizinhos(int linhaAtual, int colunaAtual) {
+        ArrayList<ElementoBasico> vizinhos = new ArrayList<>();
+
+        // Verifica células vizinhas na vizinhança de Von Neumann (adjacentes
+        // horizontalmente e verticalmente)
+        int[][] offsets = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+        for (int[] offset : offsets) {
+            int linhaVizinha = linhaAtual + offset[0];
+            int colunaVizinha = colunaAtual + offset[1];
+
+            // Verifica se a célula vizinha está dentro dos limites do tabuleiro
+            if (linhaVizinha >= 0 && linhaVizinha < MAXLIN && colunaVizinha >= 0 && colunaVizinha < MAXCOL) {
+                ElementoBasico vizinho = getElementoNaPosicao(linhaVizinha, colunaVizinha);
+                vizinhos.add(vizinho);
+            }
+        }
+
+        return vizinhos;
     }
 }
