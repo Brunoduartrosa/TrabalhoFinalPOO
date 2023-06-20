@@ -40,7 +40,6 @@ public abstract class ElementoBasico extends JButton {
     public void setImage(ImageIcon imagem) {
         this.imagem = imagem;
         this.setIcon(imagem);
-        // this.setIcon(resize(this.imagem, 15, 15));
     }
 
     public String getId() {

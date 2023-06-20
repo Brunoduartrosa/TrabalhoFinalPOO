@@ -30,15 +30,13 @@ public class App extends JFrame implements ActionListener {
 
         for (int i = 0; i <= Tabuleiro.getNumbombas(); i++) {
             tabuleiro.insereElemento(
-                    new Bomba("Bomba", r.nextInt(Tabuleiro.getMaxcol()), r.nextInt(Tabuleiro.getMaxlin()), tabuleiro));
+                    new Bomba("Bomba", r.nextInt(Tabuleiro.getMaxlin()), r.nextInt(Tabuleiro.getMaxcol()), tabuleiro));
         }
 
         Tabuleiro.getInstance().contarBombasVizinhas();
 
         // Exibe a janela
         this.add(painelGeral);
-
-        this.setSize(1100, 1100);
         this.setTitle("Campo Minado");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);

@@ -11,7 +11,14 @@ public class Bomba extends ElementoBasico {
         System.out.println("BOOM");
         System.out.println("Você perdeu!");
         this.setIcon(Tabuleiro.createImageIcon("bomba.png"));
-        JOptionPane.showMessageDialog(null, "BOOM! Você perdeu!", "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+        // JOptionPane.showMessageDialog(null, "BOOM! Você perdeu!", "Fim de Jogo",
+        // JOptionPane.INFORMATION_MESSAGE);
+
+        Object[] opcoes = { "Continuar Jogando", "Fechar" };
+        int escolha = JOptionPane.showOptionDialog(null, "BOOM! Você perdeu!", "Fim de Jogo",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
+        if (escolha == 1) {
+            System.exit(0);
+        }
     }
 }

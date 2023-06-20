@@ -96,19 +96,19 @@ public class Tabuleiro extends JPanel {
     public static void setDificuldade(int value) {
         switch (value) {
             case 0:
-                NUMBOMBAS = 5;
-                MAXLIN = 5;
-                MAXCOL = 5;
+                NUMBOMBAS = 10;
+                MAXLIN = 8;
+                MAXCOL = 8;
                 break;
             case 1:
-                NUMBOMBAS = 30;
-                MAXLIN = 10;
-                MAXCOL = 10;
+                NUMBOMBAS = 40;
+                MAXLIN = 16;
+                MAXCOL = 16;
                 break;
             case 2:
-                NUMBOMBAS = 100;
-                MAXLIN = 20;
-                MAXCOL = 20;
+                NUMBOMBAS = 99;
+                MAXLIN = 16;
+                MAXCOL = 30;
                 break;
         }
     }
