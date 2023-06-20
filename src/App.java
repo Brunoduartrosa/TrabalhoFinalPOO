@@ -1,39 +1,39 @@
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class App extends JFrame implements ActionListener {
     private Tabuleiro tabuleiro;
+    Random r = new Random();
     // private Personagem personagem;
 
     public App() {
         super();
-        // Define os componentes da tela
+        // Define dificuldade
+        Object[] opcoes = { "1 - Fácil", "2 - Médio", "3 - Difícil" };
+
+        int escolha = JOptionPane.showOptionDialog(null, "Selecione a dificuldade:", "Dificuldade",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
+
+        System.out.println(escolha);
+        Tabuleiro.setDificuldade(escolha);
+
+        // Cria o tabuleiro
         tabuleiro = new Tabuleiro();
 
         JPanel painelGeral = new JPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
         painelGeral.add(tabuleiro);
 
-        // Insere os personagens no tabuleiro
-        tabuleiro.loadLevel(1);
-        // personagem = tabuleiro.getPrincipal();
-        // personagem.setAnterior(personagem.getAnterior());
-        // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
-        // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
-        // personagem.setAnterior(anterior);
-        // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
-        // tabuleiro.insereElemento(pista1);
-        // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
-        // tabuleiro.insereElemento(pista2);
-        // Bomba bomba = new Bomba("Bomba2215",2215,4,2,tabuleiro);
-        // tabuleiro.insereElemento(bomba);
+        for (int i = 0; i < Tabuleiro.getNumbombas(); i++) {
+            tabuleiro.insereElemento(
+                    new Bomba("Bomba", r.nextInt(Tabuleiro.getMaxcol()), r.nextInt(Tabuleiro.getMaxlin()), tabuleiro));
+        }
 
         // Exibe a janela
         this.add(painelGeral);
@@ -49,19 +49,6 @@ public class App extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        // JButton but = (JButton) arg0.getSource();
-        // if (but.getText().equals("Direita")) {
-        // personagem.moveDireita();
-        // }
-        // if (but.getText().equals("Esquerda")) {
-        // personagem.moveEsquerda();
-        // }
-        // if (but.getText().equals("Acima")) {
-        // personagem.moveCima();
-        // }
-        // if (but.getText().equals("Abaixo")) {
-        // personagem.moveBaixo();
-        // }
         tabuleiro.atualizaVisualizacao();
     }
 

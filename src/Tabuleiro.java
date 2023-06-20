@@ -1,18 +1,13 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Tabuleiro extends JPanel {
-    private static final int MAXLIN = 20;
-    private static final int MAXCOL = 20;
+    private static int MAXLIN = 20;
+    private static int MAXCOL = 20;
+    private static int NUMBOMBAS = 100;
     private ElementoBasico[][] celulas;
 
     // private Personagem principal;
@@ -59,6 +54,10 @@ public class Tabuleiro extends JPanel {
         return MAXCOL;
     }
 
+    public static int getNumbombas() {
+        return NUMBOMBAS;
+    }
+
     public boolean posicaoValida(int lin, int col) {
         if ((lin < 0) || (col < 0) ||
                 (lin >= MAXLIN) || (col >= MAXCOL)) {
@@ -87,6 +86,26 @@ public class Tabuleiro extends JPanel {
         return elementoAnterior;
     }
 
+    public static void setDificuldade(int value) {
+        switch (value) {
+            case 0:
+                NUMBOMBAS = 5;
+                MAXLIN = 5;
+                MAXCOL = 5;
+                break;
+            case 1:
+                NUMBOMBAS = 30;
+                MAXLIN = 10;
+                MAXCOL = 10;
+                break;
+            case 2:
+                NUMBOMBAS = 100;
+                MAXLIN = 20;
+                MAXCOL = 20;
+                break;
+        }
+    }
+
     public void atualizaVisualizacao() {
         // Atualiza o conteúdo do JPanel (ver algo melhor)
         this.removeAll(); // erase everything from your JPanel
@@ -98,60 +117,4 @@ public class Tabuleiro extends JPanel {
             }
         }
     }
-
-    public void loadLevel(int nivel) {
-        Path path1 = Paths.get(String.format("nivel%d.txt", nivel));
-        try (BufferedReader reader = Files.newBufferedReader(path1)) {
-            String line = null;
-            int lin = 0;
-            while ((line = reader.readLine()) != null) {
-
-                for (int col = 0; col < MAXCOL; col++) {
-                    if (line.charAt(col) != ' ') {
-                        ElementoBasico elem = this.getElem(line.charAt(col), lin, col);
-                        this.insereElemento(elem);
-                    }
-                }
-                lin++;
-
-            }
-        } catch (IOException x) {
-            System.err.format("Erro de E/S: %s%n", x);
-        }
-    }
-
-    public ElementoBasico getElem(char elem, int lin, int col) {
-        Random r = new Random();
-        switch (elem) {
-            case ' ':
-                return new Fundo("Fundo", lin, col, this);
-            case '-':
-                return new Bomba("Bomba", r.nextInt(20), r.nextInt(20), this);
-            case '*': {
-                ElementoBasico anterior = new Fundo("Fundo", lin, col, this);
-                // principal = new Personagem("Mutley", "mutley.jpg", lin, col, this);
-                // principal.setAnterior(anterior);
-                // return principal;
-                return anterior;
-            }
-            default:
-                throw new IllegalArgumentException("Personagem invalido: " + elem);
-        }
-
-    }
-
-    // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
-    // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
-    // personagem.setAnterior(anterior);
-
-    // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
-    // tabuleiro.insereElemento(pista1);
-    // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
-    // tabuleiro.insereElemento(pista2);
-    // Bomba bomba = new Bomba("Bomba2215",2215,4,2,tabuleiro);
-    // tabuleiro.insereElemento(bomba);
-
-    // public Personagem getPrincipal() {
-    // return principal;
-    // }
 }
