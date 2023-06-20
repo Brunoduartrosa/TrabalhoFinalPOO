@@ -130,10 +130,10 @@ public class Tabuleiro extends JPanel {
 
         // Verifica células vizinhas na vizinhança de Von Neumann (adjacentes
         // horizontalmente e verticalmente)
-        int[][] offsets = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-        for (int[] offset : offsets) {
-            int linhaVizinha = linhaAtual + offset[0];
-            int colunaVizinha = colunaAtual + offset[1];
+        int[][] bordas = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+        for (int[] casa : bordas) {
+            int linhaVizinha = linhaAtual + casa[0];
+            int colunaVizinha = colunaAtual + casa[1];
 
             // Verifica se a célula vizinha está dentro dos limites do tabuleiro
             if (linhaVizinha >= 0 && linhaVizinha < MAXLIN && colunaVizinha >= 0 && colunaVizinha < MAXCOL) {

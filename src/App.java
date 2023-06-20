@@ -19,7 +19,6 @@ public class App extends JFrame implements ActionListener {
         int escolha = JOptionPane.showOptionDialog(null, "Selecione a dificuldade:", "Seletor",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
-        System.out.println(escolha);
         Tabuleiro.setDificuldade(escolha);
 
         // Cria o tabuleiro
