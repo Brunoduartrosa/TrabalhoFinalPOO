@@ -144,4 +144,24 @@ public class Tabuleiro extends JPanel {
 
         return vizinhos;
     }
+
+    public void contarBombasVizinhas() {
+        for (int linha = 0; linha < Tabuleiro.getMaxlin(); linha++) {
+            for (int coluna = 0; coluna < Tabuleiro.getMaxcol(); coluna++) {
+                ElementoBasico elemento = Tabuleiro.getInstance().getElementoNaPosicao(linha, coluna);
+                if (elemento instanceof Fundo) {
+                    Fundo fundo = (Fundo) elemento;
+                    int numeroBombasVizinhas = 0;
+
+                    for (ElementoBasico vizinho : Tabuleiro.getInstance().getVizinhos(linha, coluna)) {
+                        if (vizinho instanceof Bomba) {
+                            numeroBombasVizinhas++;
+                        }
+                    }
+
+                    fundo.setNumeroBombas(numeroBombasVizinhas);
+                }
+            }
+        }
+    }
 }
