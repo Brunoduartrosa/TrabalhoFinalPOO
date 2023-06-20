@@ -1,4 +1,4 @@
-import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Bomba extends ElementoBasico {
 
@@ -6,13 +6,12 @@ public class Bomba extends ElementoBasico {
         super(id, "fechado.jpg", linInicial, colInicial, tabuleiro);
     }
 
-    ImageIcon imagem = Tabuleiro
-            .createImageIcon("minesweeper.jpg");
-
     @Override
     public void acao(ElementoBasico outro) {
         System.out.println("BOOM");
         System.out.println("Você perdeu!");
-        this.setIcon(imagem);
+        this.setIcon(Tabuleiro.createImageIcon("bomba.png"));
+        JOptionPane.showMessageDialog(null, "BOOM! Você perdeu!", "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
     }
 }

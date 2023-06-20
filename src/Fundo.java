@@ -1,5 +1,3 @@
-import javax.swing.ImageIcon;
-
 public class Fundo extends ElementoBasico {
     private boolean aberto = false;
     private int numeroBombas = 0;
@@ -64,6 +62,5 @@ public class Fundo extends ElementoBasico {
     @Override
     public void acao(ElementoBasico outro) {
         this.abrir();
-        System.out.println("Número de bombas vizinhas: " + numeroBombas);
     }
 }
