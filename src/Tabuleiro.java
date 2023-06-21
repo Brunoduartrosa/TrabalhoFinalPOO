@@ -130,7 +130,8 @@ public class Tabuleiro extends JPanel {
 
         // Verifica células vizinhas na vizinhança de Von Neumann (adjacentes
         // horizontalmente e verticalmente)
-        int[][] bordas = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+        // verifica diagonais
+        int[][] bordas = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 }, { -1, -1 }, { 1, 1 }, { -1, 1 }, { 1, -1 } };
         for (int[] casa : bordas) {
             int linhaVizinha = linhaAtual + casa[0];
             int colunaVizinha = colunaAtual + casa[1];
